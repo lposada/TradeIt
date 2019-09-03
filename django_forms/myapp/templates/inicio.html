@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Trade It</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"-->
+    <link href="{% static 'css/Styles.css' %}" rel="stylesheet" type="text/css">
 </head>
 <body style="padding: 20px;">
+    <div id = "image">
+        <div class="logo">
+        <img src="{% static 'logo.png' %}" >
+        </div>
+    </div>
+    <div id = texto>
+    <p>Seleccione una de las opciones</p>
     <a class="btn btn-primary" href="/usuarioexistente">Usuario Existente</a>   
-    <a class="btn btn-primary" href="/crearcontacto">Crear Usuario</a>      
+    <a class="btn btn-primary" href="/crearcontacto">Crear Usuario</a>
+    </div>      
 </body>
 </html>

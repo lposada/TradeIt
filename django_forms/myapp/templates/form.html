@@ -1,4 +1,4 @@
-{% load crispy_forms_tags %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Trade It</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="{% static 'css/Formulario.css' %}" rel="stylesheet" type="text/css">
 </head>
 <body style="padding: 20px;">
-    {% crispy form form.helper %}
+    <div>
+        <form action="" method="POST">
+            <table>
+                <tr>{{ table.Nombre }}</tr>
+                <tr>{{ table.Email }}</tr>
+                <tr>{{ table.Tipo }}</tr>
+                <tr>{{ table.Id }}</tr>
+                {% csrf_token %}
+                {{ form }}
+            </table>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
 </body>
 </html>
