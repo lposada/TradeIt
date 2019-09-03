@@ -30,6 +30,12 @@ body
     background-position: center;
 }
 
+
+#datos
+{
+    text-align: left;
+    margin-left: 140px;
+}
 #texto
 {
     background: #f3edd0;

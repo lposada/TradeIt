@@ -16,19 +16,26 @@ def entrada(request):
 def get_item(id):
         for usuario in Usuarios:
                 if usuario['Id'] == id:
-                        return "Nombre:" + usuario['Nombre'] + " Id:" + usuario['Id'] + " Tipo:" + usuario['Tipo'] + " Email:" + usuario['Email']
+                        user = usuario
+                        break
                 else:
-                        return "No Existe"
+                        user = "No Existe"
+        return user
 
 def existente(request):
-
+        usuario = "Introduzca el id del usuario"
         if request.method == 'POST':
                 form = UsuarioExistente(request.POST)
                 if form.is_valid():
                         ids = form.cleaned_data['Id']
-                        print(get_item(ids))
+                        usuario = get_item(ids)
+                        nombre = usuario['Nombre']
+                        cedula = usuario['Id']
+                        tipo = usuario['Tipo']
+                        correo = usuario['Email']
         form = UsuarioExistente()
-        return render(request, 'existente.html', {'form': form})
+
+        return render(request, 'existente.html', {'form': form, 'nombre': "Nombre: " + nombre, 'tipo': "Tipo: " + tipo, 'cedula': "Id: " + cedula, 'correo': "Correo: " + correo,})
 
 
 def contact(request):

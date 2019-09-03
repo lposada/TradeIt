@@ -16,6 +16,10 @@
     </div>
     <div id = "texto">
     <form action="" method="POST">
+            <div id = "datos"><br>{{nombre|safe}}</br>
+            <br>{{tipo|safe}}</br>
+            <br>{{cedula|safe}}</br>
+            <br>{{correo|safe}}</br> </div>
             {% csrf_token %}
             {{ form }}
             <br><button type="submit" class="btn btn-primary">Buscar</button></br>
