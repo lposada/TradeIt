@@ -1,0 +1,30 @@
+@import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+
+*
+{
+    margin:0;
+    padding:0;
+}
+
+body
+{
+    background: #f3edd0;
+    background-position: center;
+}
+
+div
+{
+    background: #f3edd0;
+    background-position: center;
+    height: 800px;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    padding: 400px;
+    border: 5px solid;
+    margin-top: 150px;
+}
+
+button{
+    margin-right: 140px;
+}
