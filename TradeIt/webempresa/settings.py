@@ -72,9 +72,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'social.processors.ctx_dict',
-                
+
             ],
-            'libraries':{'pages_extras': 'pages.templatetags.pages_extras', 'auth_extras':'core.templatetags.auth_extras'}
+            'libraries':{'pages_extras': 'pages.templatetags.pages_extras', 'auth_extras': 'core.templatetags.auth_extras'}
         },
     },
 ]
@@ -87,8 +87,12 @@ WSGI_APPLICATION = 'webempresa.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'vzukscgs',
+        'USER': 'vzukscgs',
+        'PASSWORD': 'EdsDIE61qH7mOALCzmUpKpVSj3MOIn0e',
+        'HOST': 'salt.db.elephantsql.com',
+        'PORT': '5432'
     }
 }
 
@@ -134,13 +138,14 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-#Ckeditor
+# Ckeditor
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
         'toolbar_Custom': [
             ['Bold', 'Italic', 'Underline'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
+                'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
             ['Link', 'Unlink'],
             ['RemoveFormat', 'Source']
         ]
