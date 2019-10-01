@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Reseñas{% endblock %}
+
+{% block content %}
+  <section class="page-section cta">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <div class="cta-innerv text-center rounded">
+            <h2 class="section-heading mb-5">Reseñas</h2>
+              <table class="table table-responsive-xl">
+                <tr>
+                  <th>Titulo</th>
+                  <th>Categorias</th>
+                  <th>Autor</th>
+                </tr>
+                {% for post in object_list %}
+                  <tr>
+                    <td>{{post.title}}</td>
+                    <td>
+                    {% for category in post.categories.all %}
+                      {{category|safe}}{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                    </td>
+                    <td>{{post.author}}</td>  
+                  </tr>
+                {% endfor %}
+            </table>         
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+
+    

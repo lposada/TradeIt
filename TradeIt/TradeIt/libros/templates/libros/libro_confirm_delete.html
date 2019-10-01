@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Borrar Libro{% endblock %}
+{% block content %}
+<section class="page-section about-heading">
+  <div class="container">
+    <hr>
+    <div class="about-heading-content">
+      <div class="row">
+        <div class="col-xl-9 col-lg-10 mx-auto">
+          <div class="bg-faded rounded p-5">
+            <h2 class="section-heading mb-4">
+              <span class="section-heading-upper"></span>
+            </h2>
+            <main role="main">
+              <div class="container">
+                <div class="row mt-3">
+                  <div class="col-md-9 mx-auto">
+                    <div>
+                        <form action="" method="post">{% csrf_token %}
+                            <p>¿Estás seguro de que quieres borrar "{{ object }}"?</p>
+                            <input type="submit" class="btn btn-primary btn-block" value="Sí, borrar libro"/>
+                        </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

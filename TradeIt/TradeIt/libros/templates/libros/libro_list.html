@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Libros{% endblock %}
+{% block content %}
+<section class="page-section about-heading">
+  <div class="container-fluid">
+    <!--<img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'core/img/contact.jpg' %}" alt="">-->
+    <hr>
+    <div class="about-heading-content">
+      <div class="row">
+        <div class="col-xl-4 mx-auto">
+          <div class="bg-faded rounded p-5">
+            <h2 class="section-heading mb-4">
+              <span class="section-heading-upper">Registro de Libros <a href="{% url 'libros:crearlibro' %}" class="offset-lg-4">Crear Libro</a></span>
+            </h2>
+            <table class="table table-responsive-xl">
+            <tr>
+              <th>Titulo</th>
+              <th>Identificador</th>
+              <th>Link</th>
+            </tr>
+            {% for libro in object_list %}
+            <tr>
+              <td>{{libro.title}}</td>
+              <td>{{libro.id|striptags}}</td>  
+              <td><a href="{% url 'libros:libro' libro.id libro.title|slugify %}"> Ver mas</a></td>
+            </tr>
+            {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

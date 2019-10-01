@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Usuarios{% endblock %}
+{% block content %}
+<section class="page-section about-heading">
+  <div class="container-fluid">
+    <!--<img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'core/img/contact.jpg' %}" alt="">-->
+    <hr>
+    <div class="about-heading-content">
+      <div class="row">
+        <div class="col-xl-4 mx-auto">
+          <div class="bg-faded rounded p-5">
+            <h2 class="section-heading mb-4">
+              <span class="section-heading-upper">Registro de Usuarios <a href="{% url 'usuarios:crear' %}" class="offset-lg-2">Crear Usuario</a></span>
+            </h2>
+            <table class="table table-responsive-xl">
+              <tr>
+                <th>Nombre</th>
+                <th>Documento</th>
+                <th>Link</th>
+              </tr>
+              {% for usuario in object_list %}
+              <tr>
+                <td>{{usuario.name}}</td>
+                <td>{{usuario.id|striptags}}</td>  
+                <td><a href="{% url 'usuarios:usuario' usuario.id usuario.name|slugify %}"> Ver mas</a></td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

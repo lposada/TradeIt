@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Reseñas{% endblock %}
+
+{% block content %}
+  <section class="page-section cta">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <div class="cta-innerv text-center rounded">
+            <h2 class="section-heading mb-5">Reseñas <a href="{% url 'posts:crear' %}" class="btn btn-primary offset-4">Crear Post</a></h2>
+                <div class="text-left mx-auto">
+                {% for category in object_list reversed %}
+                    <h2><u> {{category.name}} </h2></u>
+                    <table class="table table-responsive-xl">
+                    <tr>
+                        <td>Titulo</td>
+                        <td>Autor</td>
+                        <td>Fecha Publicacion</td>
+                    </tr>
+                    {% for post in category.get_posts.all %}
+                    <tr>
+                       <td><a href="{% url 'posts:post' post.id post.title|slugify %}" class="btn-link">- {{post.title}}</a></td>
+                       <td><b>{{post.author}}</b></td>
+                       <td><b>{{post.published}}</b></td>
+                    </tr>
+                    {% endfor %}
+                    </table>
+                {% endfor %}  
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
