@@ -24,15 +24,14 @@
     <link href="{% static 'core/css/custom.css' %}" rel="stylesheet">
 
   </head>
-
   <body>
-    <h2 class="site-heading text-center text-white d-none d-lg-block">
-      <img src="{% static 'core/img/transp.png' %}" class="img-header mt-5 mb-5">
+    <div class="site-heading text-center text-white d-none d-lg-block">
+      <img src="{% static 'core/img/transp.png' %}" class="img-fluid mt-5 mb-5 p-xl-5 imagen-fondo">
       <!-- <img src="{% static 'core/img/lyg.png' %}"-->
-    </h2>
+    </div>
 
     <!-- Navegación -->
-    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4 fixed-top" id="mainNav">
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-2 py-xl-4 fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="{% url 'home' %}">Trueque Literario</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +45,7 @@
             <li class="nav-item px-lg-4 {% if request.path == '/services/' %}active{% endif %}">
               <a class="nav-link text-uppercase text-expanded" href="{% url 'services' %}">Servicios</a>
             </li>
-            {% load auth_extras%}
+            {% load auth_extras %}
             {% if request.user|has_group:"Personal" %}
             <li class="nav-item px-lg-4 {% if request.path == '/contact/' %}active{% endif %}">
               <a class="nav-link text-uppercase text-expanded" href="{% url 'contact' %}">Contacto</a>

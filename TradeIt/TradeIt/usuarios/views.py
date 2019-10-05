@@ -37,4 +37,3 @@ class TruequesView(UpdateView):
 class DeleteUsuario(DeleteView):
     model = Usuario
     success_url = reverse_lazy('usuarios:usuarios')
-

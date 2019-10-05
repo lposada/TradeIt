@@ -35,10 +35,8 @@ p {
   font-family: 'Raleway';
 }
 
-.img-header {
-  max-width: 100%;
-  height: auto;
-  max-width: 75rem;
+.img-fondo {
+  max-width: 10px;
 }
 
 .site-heading .site-heading-upper {

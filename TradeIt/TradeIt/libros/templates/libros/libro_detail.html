@@ -6,35 +6,32 @@
 {% block content %}
 <section class="page-section about-heading">
   <div class="container">
-    <!--<img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'core/img/contact.jpg' %}" alt="">-->
-    <hr>
     <div class="about-heading-content">
       <div class="row">
-        <div class="col-xl-12 col-lg-10 mx-auto">
+        <div class="col-xl-8 col-lg-10 col-md-12 mx-auto">
           <div class="bg-faded rounded p-5">
             <h2 class="section-heading mb-4">
-              <span class="section-heading-upper">Libro: {{libro.name}}</span>            
+              <span class="section-heading-upper">Libro: {{libro.title}}</span>            
             </h2>
-            <div class="section-content">
-              <table class="table table-responsive">
+            <div class="section-content">         
+              <table class="table table-responsive-md table-bordered">
                 <tr>
-                  <th>Nombre</th>
-                  <th>Tipo de Documento</th>
-                  <th>Documento</th>
-                  <th>Correo</th>
-                  <th>Trueques Disponibles</th>
+                  <th>Titulo</th>
+                  <th>Autor</th>
+                  <th>Tipo</th>
+                  <th>Identificador</th>
                 </tr>
                 <tr>
-                  <td>{{libro.name}}</td>
+                  <td>{{libro.title}}</td>
+                  <td>{{libro.autor}}</td>
                   <td>{{libro.tipo}}</td>
-                  <td>{{libro.id|striptags}}</td>
-                  <td>{{libro.email}}</td>
-                  <td>{{libro.trueques}}</td>
+                  <td><div class="text-center">{{libro.id}}</div></td>
                 </tr>
               </table>
               <div class="mt-4">
-                <a href="{% url "libros:libros" %}" class="btn btn-existente">Regresar</a>  <a href="{% url "libros:delete" libro.id %}" class="ml-xl-5 btn btn-eliminar">Borrar</a>
-              </div>
+                <a href="{% url "libros:libros" %}" class="btn btn-existente p-3">Regresar</a>
+                <a href="{% url "libros:delete" libro.id %}" class="btn btn-eliminar p-3">Borrar</a>
+              </div>             
             </div>
           </div>
         </div>

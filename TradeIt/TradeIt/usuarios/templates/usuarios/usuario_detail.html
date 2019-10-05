@@ -6,17 +6,15 @@
 {% block content %}
 <section class="page-section about-heading">
   <div class="container">
-    <!--<img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'core/img/contact.jpg' %}" alt="">-->
-    <hr>
     <div class="about-heading-content">
       <div class="row">
-        <div class="col-xl-12 col-lg-10 mx-auto">
+        <div class="col-xl-10 col-lg-10 col-md-12 mx-auto">
           <div class="bg-faded rounded p-5">
             <h2 class="section-heading mb-4">
               <span class="section-heading-upper">Usuario: {{usuario.name}}</span>            
             </h2>
             <div class="section-content">
-              <table class="table table-responsive">
+              <table class="table table-responsive table-bordered">
                 <tr>
                   <th>Nombre</th>
                   <th>Tipo de Documento</th>
@@ -33,7 +31,9 @@
                 </tr>
               </table>
               <div class="mt-4">
-                <a href="{% url "usuarios:usuarios" %}" class="btn btn-existente">Regresar</a>  <a href="{% url "usuarios:delete" usuario.id %}" class="ml-xl-5 btn btn-eliminar">Borrar</a>  <a href="{% url "usuarios:trueques" usuario.id %}" class="ml-xl-5 btn btn-agregar">Agregar Trueque</a>
+                <a href="{% url "usuarios:usuarios" %}" class="btn btn-existente p-3">Regresar</a>
+                <a href="{% url "usuarios:delete" usuario.id %}" class="btn btn-eliminar p-3">Borrar</a>
+                <a href="{% url "usuarios:trueques" usuario.id %}" class="btn btn-agregar p-3">Agregar Trueque</a>
               </div>
             </div>
           </div>

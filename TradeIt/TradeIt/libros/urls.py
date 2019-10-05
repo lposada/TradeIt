@@ -6,5 +6,5 @@ libros_patterns = ([
     path('', ListLibro.as_view(), name='libros'),
     path('<int:pk>/<slug:slug>/', DetailLibro.as_view(), name='libro'),
     path('crear/', CrearLibro.as_view(), name='crearlibro'),
-    path('delete/<int:pk>/', DeleteLibro.as_view(), name='deletelibro'),
+    path('delete/<int:pk>/', DeleteLibro.as_view(), name='delete'),
 ], 'libros')
