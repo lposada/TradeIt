@@ -26,7 +26,7 @@
   </head>
   <body>
     <div class="site-heading text-center text-white d-none d-lg-block">
-      <img src="{% static 'core/img/transp.png' %}" class="img-fluid mt-5 mb-5 p-xl-5 imagen-fondo">
+      <img src="{% static 'core/img/transp.png' %}" class="img-fluid mt-5 mb-5 p-xl-5 img-fondo">
       <!-- <img src="{% static 'core/img/lyg.png' %}"-->
     </div>
 
@@ -109,7 +109,7 @@
           {% for page in page_list %}
             <a href="{% url 'page' page.id page.title|slugify %}" class="link">{{page.title}}</a> {% if not forloop.last %}·{% endif %}
           {% endfor %}
-		</p>
+		    </p>
         <p class="m-0 mbt1">&copy; Trueque Literario 2019</p>
       </div>
 	</footer>
