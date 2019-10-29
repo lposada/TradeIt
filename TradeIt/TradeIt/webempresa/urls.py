@@ -19,6 +19,7 @@ from django.conf import settings
 from usuarios.urls import usuarios_patterns
 from libros.urls import libros_patterns
 from posts.urls import posts_patterns
+from trueque.urls import trueque_patterns
 
 urlpatterns = [
     path('', include('core.urls')),
@@ -26,9 +27,12 @@ urlpatterns = [
     path('services/', include ('services.urls')),
     path('page/', include ('pages.urls')),
     path('contact/', include ('contact.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('registration.urls')),
     path('posts/', include (posts_patterns)),
     path('usuarios/', include (usuarios_patterns)),
     path('libros/', include (libros_patterns)),
+    path('trueque/',  include(trueque_patterns)),
     path('admin/', admin.site.urls),
 
 ]

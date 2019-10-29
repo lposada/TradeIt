@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Trueques{% endblock %}
+{% block content %}
+<section class="page-section about-heading">
+  <div class="container-fluid">
+    <div class="about-heading-content">
+      <div class="row">
+        <div class="col-xl-6 col-lg-8 col-md-12 mx-auto">
+          <div class="bg-faded rounded p-5">
+            <h2 class="section-heading mb-4">
+              <span class="section-heading-upper">Registro de Trueques<a href="{% url 'trueque:crear' %}" class="offset-1">Crear Trueque</a></span>
+            </h2>
+            <div class="table-responsive">
+              <table class="table table-hover table-bordered table-striped">
+                <tr>
+                  <th>ID</th>
+                  <th>Usuario</th>
+                  <th>Libro</th>
+                  <th>Direccionalidad</th>
+                  <th>Link</th>
+                </tr>
+                {% for trueque in object_list %}
+                <tr>
+                  <td>{{trueque.id}}</td>
+                  <td>{{trueque.usuario}}</td>
+                  <td>{{trueque.libro}}</td>
+                  <td>{{trueque.direccionalidad}}</td>  
+                  <td><a href="{% url 'trueque:trueques' %}"> Ver mas</a></td>
+                </tr>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+

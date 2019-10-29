@@ -36,7 +36,7 @@ p {
 }
 
 .img-fondo {
-  max-width: 60rem;
+  max-width: 10px;
 }
 
 .site-heading .site-heading-upper {
@@ -272,6 +272,17 @@ p {
 .btn-primary {
   background-color: #e6a756;
   border-color: #e6a756;
+}
+
+.btn-actualizar {
+  background-color: #339714;
+  border-color: #339714;
+  color: #ffffff;
+}
+
+.btn-actualizar:hover, .btn-actualizar:focus, .btn-actualizar:active {
+  background-color: #339714;
+  border-color: #339714;
 }
 
 .btn-existente {

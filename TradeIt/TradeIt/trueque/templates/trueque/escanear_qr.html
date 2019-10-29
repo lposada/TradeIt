@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Trueques{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<section class="page-section about-heading">
+  <div class="container-fluid">
+    <div class="about-heading-content">
+      <div class="row">
+        <div class="col-xl-5% col-lg-5% col-md-5% mx-auto">
+          <div class="bg-faded rounded p-5">
+            <h2 class="section-heading mb-4">
+              <span class="section-heading-upper">Escanear Libros </span>
+            </h2>
+            <head>
+              <title>Instascan</title>
+              <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+            </head>
+              <body>
+                  <video id="preview"></video>
+                  <script>
+                      let scanner = new Instascan.Scanner(
+                          {
+                              video: document.getElementById('preview')
+                          }
+                      );
+                      scanner.addListener('scan', function(content) {
+                          document.write(content)
+                          window.location.href = "{% url 'trueque:crear' %}" + "?id_libro=" + content;
+                      }); 
+                      Instascan.Camera.getCameras().then(cameras =>
+                      {
+                          if(cameras.length > 0){
+                              scanner.start(cameras[0]);
+                          } else {
+                              console.error("No existe camara en el dispositivo");
+                          }
+                      });
+                    </script>
+                </body>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

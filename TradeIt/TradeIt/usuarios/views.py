@@ -1,39 +1,45 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from django.urls import reverse, reverse_lazy
-from .forms import UsuariosForm, TruequesForm
+from .forms import UsuariosForm
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import Group
 from .models import Usuario
 from django.views.generic import CreateView, ListView, DetailView, DeleteView, UpdateView
+from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
+
 # Create your views here.
-personal = Group(name = "Personal")
-
-def check_admin(user):
-    return user.groups.filter(name='Personal').exists()
-
-@user_passes_test(check_admin)
-def usuarios(request):
-    return render(request, 'usuarios/usuarios.html')
-
+@method_decorator(staff_member_required, name='dispatch')
 class ListUsuarios(ListView):
     model = Usuario
+    def get_queryset(self): # new
+        object_list = Usuario.objects.all()
+        query = self.request.GET.get('buscar')
+        if query:
+            object_list = Usuario.objects.filter(
+                Q(name__icontains=query) | Q(id__icontains=query) | Q(email__icontains=query)
+            )
 
+        return object_list
+
+@method_decorator(staff_member_required, name='dispatch')
 class DetailUsuario(DetailView):
     model = Usuario
 
+@method_decorator(staff_member_required, name='dispatch')
 class CrearUsuario(CreateView):
     model = Usuario
     form_class = UsuariosForm
     success_url = reverse_lazy('usuarios:usuarios')
 
-class TruequesView(UpdateView):
+@method_decorator(staff_member_required, name='dispatch')
+class UpdateUsuario(UpdateView):
     model = Usuario
-    form_class = TruequesForm
-    template_name = 'usuarios/usuario_trueque_form.html'
-    def get_success_url(self):
-        return reverse_lazy('usuarios:trueques', args=[self.object.id]) + '?ok'
+    success_url = reverse_lazy('usuarios:usuarios')
+    fields = ['nombre', 'apellido', 'email']
 
+@method_decorator(staff_member_required, name='dispatch')
 class DeleteUsuario(DeleteView):
     model = Usuario
     success_url = reverse_lazy('usuarios:usuarios')

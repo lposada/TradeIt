@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load crispy_forms_tags %}
+
 {% block title %}Crear Usuario{% endblock %}
 
 {% block content %}
@@ -22,9 +24,9 @@
             {% endif %}
             <form action="" method="POST">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ form|crispy }}
                 <div class="text-center">
-                    <input type="submit" class="btn btn-agregar p-3" value="Agregar">
+                    <input type="submit" class="btn btn-agregar p-3" value="Submit">
                     <a href="{% url 'usuarios:usuarios' %}" class="btn btn-existente p-3">Regresar</a>
                 </div>
             </form>

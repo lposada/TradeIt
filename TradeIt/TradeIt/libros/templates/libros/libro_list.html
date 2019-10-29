@@ -5,28 +5,44 @@
 {% block title %}Libros{% endblock %}
 {% block content %}
 <section class="page-section about-heading">
-  <div class="container">
+  <div class="container-fluid">
     <div class="about-heading-content">
       <div class="row">
-        <div class="col-xl-8 col-lg-6 col-md-8 mx-auto">
+        <div class="col-xl-6 col-lg-8 col-md-8 col-sm-12 col-12 mx-auto">
           <div class="bg-faded rounded p-5">
-            <h2 class="section-heading mb-4">
-              <span class="section-heading-upper">Registro de Libros <a href="{% url 'libros:crearlibro' %}" class="offset-2">Crear Libro</a></span>
-            </h2>
-            <table class="table table-responsive-md table-hover table-bordered">
-            <tr>
-              <th>Titulo</th>
-              <th>Identificador</th>
-              <th>Link</th>
-            </tr>
-            {% for libro in object_list %}
-            <tr>
-              <td>{{libro.title}}</td>
-              <td>{{libro.id|striptags}}</td>  
-              <td><a href="{% url 'libros:libro' libro.id libro.title|slugify %}"> Ver mas</a></td>
-            </tr>
-            {% endfor %}
-            </table>
+            <div class="row">
+              <div class="col-8">
+                <h3 class="section-header mb-4">
+                  <span class="section-heading-upper">
+                    Registro de Libros
+                    <a href="{% url 'libros:crearlibro' %}" class="offset-xl-2">Crear Libro</a>
+                  </span>
+                </h3>
+              </div>
+              <div class="col-4">
+                <form action="{% url 'libros:libros' %}" method="get" class="form-group">
+                  <input type="text" name="buscar" placeholder="Buscar" class="form-control">                 
+                </form>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover table-bordered">
+                <tr>
+                  <th>Titulo</th>
+                  <th>Identificador</th>
+                  <th>Editorial</th>
+                  <th>Link</th>
+                </tr>
+                {% for libro in object_list %}
+                <tr>
+                  <td>{{libro.title}}</td>
+                  <td>{{libro.id|striptags}}</td>  
+                  <td>{{libro.editorial}}</td>  
+                  <td><a href="{% url 'libros:libro' libro.id %}"> Ver mas</a></td>
+                </tr>
+                {% endfor %}
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -34,3 +50,5 @@
   </div>
 </section>
 {% endblock %}
+
+

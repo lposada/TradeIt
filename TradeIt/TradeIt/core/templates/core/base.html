@@ -26,7 +26,7 @@
   </head>
   <body>
     <div class="site-heading text-center text-white d-none d-lg-block">
-      <img src="{% static 'core/img/transp.png' %}" class="img-fluid mt-5 mb-5 p-xl-5 img-fondo">
+      <img src="{% static 'core/img/transp.png' %}" class="img-fluid mt-5 mb-5 p-xl-5 imagen-fondo" width="1000px">
       <!-- <img src="{% static 'core/img/lyg.png' %}"-->
     </div>
 
@@ -38,7 +38,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav mx-auto">
+          <ul class="navbar-nav mr-auto">
             <li class="nav-item px-lg-4 {% if request.path == '/' %}active{% endif %}">
               <a class="nav-link text-uppercase text-expanded" href="{% url 'home' %}">Inicio</a>
             </li>
@@ -61,10 +61,37 @@
               <a class="nav-link text-uppercase text-expanded" href="{% url 'libros:libros' %}">Libros</a>
             </li>
             {% endif %}
+            {% if request.user|has_group:"Personal" %}
+            <li class="nav-item px-lg-4 {% if request.path == '/trueque/' %}active{% endif %}">
+              <a class="nav-link text-uppercase text-expanded" href="{% url 'trueque:trueques' %}">Trueque</a>
+            </li>
+            {% endif %}
             <li class="nav-item px-lg-4 {% if request.path == '/posts/' %}active{% endif %}">
               <a class="nav-link text-uppercase text-expanded" href="{% url 'posts:posts' %}">Reseñas</a>
             </li>
           </ul>
+          <ul class="navbar-nav">
+              {% if not request.user.is_authenticated %}
+                <li class="nav-item {% if request.path == '/accounts/login/' %}active{% endif %}">
+                  <a class="nav-link text-uppercase text-expanded" href="{% url 'login' %}">Acceder</a>
+                </li>
+                <li class="nav-item {% if request.path == '/accounts/signup/' %}active{% endif %}">
+                  <a class="nav-link text-uppercase text-expanded" href="{% url 'signup' %}">Registro</a>
+                </li>
+              {% else %}
+                <li class="nav-item {% if request.path == '/accounts/profile/' %}active{% endif %}">
+                  <a class="nav-link text-uppercase text-expanded" href="{% url 'profile' %}">Perfil</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-uppercase text-expanded" href="{% url 'logout' %}">Salir</a>
+                </li>
+              {% endif %}
+              {% if request.user|has_group:"Personal" %}
+              <li class="nav-item">
+                <a class="nav-link text-uppercase text-expanded" href="{% url 'admin:index' %}">Administrador</a>
+              </li>
+              {% endif %}
+            </ul>
         </div>
       </div>
     </nav>
@@ -109,7 +136,7 @@
           {% for page in page_list %}
             <a href="{% url 'page' page.id page.title|slugify %}" class="link">{{page.title}}</a> {% if not forloop.last %}·{% endif %}
           {% endfor %}
-		    </p>
+		</p>
         <p class="m-0 mbt1">&copy; Trueque Literario 2019</p>
       </div>
 	</footer>

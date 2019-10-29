@@ -8,25 +8,39 @@
   <div class="container-fluid">
     <div class="about-heading-content">
       <div class="row">
-        <div class="col-12 mx-auto">
+        <div class="col-xl-6 col-lg-6 col-md-12 mx-auto">
           <div class="bg-faded rounded p-5">
-            <h2 class="section-heading mb-4">
-              <span class="section-heading-upper">Registro de Usuarios <a href="{% url 'usuarios:crear' %}" class="offset-2">Crear Usuario</a></span>
-            </h2>
-            <table class="table table-responsive-xl table-hover table-bordered">
-              <tr>
-                <th>Nombre</th>
-                <th>Documento</th>
-                <th>Link</th>
-              </tr>
-              {% for usuario in object_list %}
-              <tr>
-                <td>{{usuario.name}}</td>
-                <td>{{usuario.id|striptags}}</td>  
-                <td><a href="{% url 'usuarios:usuario' usuario.id usuario.name|slugify %}"> Ver mas</a></td>
-              </tr>
-              {% endfor %}
-            </table>
+            <div class="row">
+              <div class="col-8">
+                <h3 class="section-header mb-4">
+                  <span class="section-heading-upper">
+                    Registro de Usuarios
+                    <a href="{% url 'usuarios:crear' %}" class="offset-xl-2">Crear Usuario</a>
+                  </span>
+                </h3>
+              </div>
+              <div class="col-4">
+                <form action="{% url 'usuarios:usuarios' %}" method="get" class="form-group">
+                  <input type="text" name="buscar" placeholder="Buscar" class="form-control">                 
+                </form>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover table-bordered">
+                <tr>
+                  <th>Nombre</th>
+                  <th>Documento</th>
+                  <th>Link</th>
+                </tr>
+                {% for usuario in object_list %}
+                <tr>
+                  <td>{{usuario.name}}</td>
+                  <td>{{usuario.id|striptags}}</td>  
+                  <td><a href="{% url 'usuarios:usuario' usuario.id usuario.name|slugify %}"> Ver mas</a></td>
+                </tr>
+                {% endfor %}
+              </table>
+            </div>
           </div>
         </div>
       </div>
