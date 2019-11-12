@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from django.urls import reverse, reverse_lazy
-from .forms import UsuariosForm
+from .forms import UsuariosForm, UsuariosFormUpdate
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import Group
 from .models import Usuario
@@ -13,12 +13,13 @@ from django.utils.decorators import method_decorator
 @method_decorator(staff_member_required, name='dispatch')
 class ListUsuarios(ListView):
     model = Usuario
+    paginate_by = 10
     def get_queryset(self): # new
         object_list = Usuario.objects.all()
         query = self.request.GET.get('buscar')
         if query:
             object_list = Usuario.objects.filter(
-                Q(name__icontains=query) | Q(id__icontains=query) | Q(email__icontains=query)
+                Q(nombre__icontains=query) | Q(id__icontains=query) | Q(email__icontains=query)
             )
 
         return object_list
@@ -36,8 +37,9 @@ class CrearUsuario(CreateView):
 @method_decorator(staff_member_required, name='dispatch')
 class UpdateUsuario(UpdateView):
     model = Usuario
+    form_class = UsuariosFormUpdate
     success_url = reverse_lazy('usuarios:usuarios')
-    fields = ['nombre', 'apellido', 'email']
+    template_name = 'usuarios/usuario_form_update.html'
 
 @method_decorator(staff_member_required, name='dispatch')
 class DeleteUsuario(DeleteView):

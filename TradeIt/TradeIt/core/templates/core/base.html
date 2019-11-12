@@ -39,34 +39,43 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item px-lg-4 {% if request.path == '/' %}active{% endif %}">
+            <li class="nav-item px-lg-2 {% if request.path == '/' %}active{% endif %}">
               <a class="nav-link text-uppercase text-expanded" href="{% url 'home' %}">Inicio</a>
             </li>
-            <li class="nav-item px-lg-4 {% if request.path == '/services/' %}active{% endif %}">
+            <li class="nav-item px-lg-2 {% if request.path == '/services/' %}active{% endif %}">
               <a class="nav-link text-uppercase text-expanded" href="{% url 'services' %}">Servicios</a>
             </li>
             {% load auth_extras %}
             {% if request.user|has_group:"Personal" %}
-            <li class="nav-item px-lg-4 {% if request.path == '/contact/' %}active{% endif %}">
+            <li class="nav-item px-lg-2 {% if request.path == '/contact/' %}active{% endif %}">
               <a class="nav-link text-uppercase text-expanded" href="{% url 'contact' %}">Contacto</a>
             </li>
             {% endif %}
             {% if request.user|has_group:"Personal" %}
-            <li class="nav-item px-lg-4 {% if request.path == '/usuarios/' %}active{% endif %}">
+            <li class="nav-item px-lg-2 {% if request.path == '/usuarios/' %}active{% endif %}">
               <a class="nav-link text-uppercase text-expanded" href="{% url 'usuarios:usuarios' %}">Usuarios</a>
             </li>
             {% endif %}
             {% if request.user|has_group:"Personal" %}
-            <li class="nav-item px-lg-4 {% if request.path == '/libros/' %}active{% endif %}">
+            <li class="nav-item px-lg-2 {% if request.path == '/libros/' %}active{% endif %}">
               <a class="nav-link text-uppercase text-expanded" href="{% url 'libros:libros' %}">Libros</a>
             </li>
             {% endif %}
             {% if request.user|has_group:"Personal" %}
-            <li class="nav-item px-lg-4 {% if request.path == '/trueque/' %}active{% endif %}">
-              <a class="nav-link text-uppercase text-expanded" href="{% url 'trueque:trueques' %}">Trueque</a>
+            <li class="nav-item px-lg-2 dropdown {% if request.path == '/trueque/' %}active{% endif %}">
+              <a class="nav-link text-uppercase dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Trueques
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'trueque:trueques' %}">Trueque</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'trueque:estadisticas' %}">Estadisticas</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'trueque:reportes' %}">Reportes</a>
+              </div>
             </li>
             {% endif %}
-            <li class="nav-item px-lg-4 {% if request.path == '/posts/' %}active{% endif %}">
+            <li class="nav-item px-lg-2 {% if request.path == '/posts/' %}active{% endif %}">
               <a class="nav-link text-uppercase text-expanded" href="{% url 'posts:posts' %}">Reseñas</a>
             </li>
           </ul>

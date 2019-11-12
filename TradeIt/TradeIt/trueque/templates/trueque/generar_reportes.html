@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Trueques{% endblock %}
+{% block content %}
+<section class="page-section about-heading">
+  <div class="container-fluid">
+    <div class="about-heading-content">
+      <div class="row">
+        <div class="col-xl-4 col-lg-6 col-md-12 mx-auto">
+          <div class="bg-faded rounded p-5">
+            <h2 class="section-heading mb-4">
+              <span class="section-heading-upper text-center ">Generar Reportes</span>
+            </h2>
+            <form action="{% url 'trueque:reporte' %}" method="get" class="form-group">
+              <p>Introduzca el nombre de la editorial:</p>
+              <input type="text" name="editorial" placeholder="Editorial" class="form-control">
+              <input type="submit" name="" value="Generar" class="btn btn-primary mt-2">
+            </form>
+          </div>         
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+

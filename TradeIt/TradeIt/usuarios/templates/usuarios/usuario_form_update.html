@@ -4,7 +4,7 @@
 
 {% load crispy_forms_tags %}
 
-{% block title %}Crear Trueque{% endblock %}
+{% block title %}Crear Usuario{% endblock %}
 
 {% block content %}
 <section class="page-section about-heading">
@@ -16,19 +16,18 @@
         <div class="col-xl-12 col-lg-10 mx-auto">
           <div class="bg-faded rounded p-5">
             <h2 class="section-heading mb-4">
-              <span class="section-heading-upper">Registrar Trueque</span>
+              <span class="section-heading-upper">Registrar Usuarios</span>
             </h2>
             <!-- Formulario de contacto -->
             {% if 'ok' in request.GET %}
-              <p><b>Trueque Ingresado Correctamente</p></b>
+              <p><b>Usuario Actualizado Correctamente</p></b>
             {% endif %}
             <form action="" method="POST">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ form|crispy }}
                 <div class="text-center">
-                    <input type="submit" class="btn btn-agregar p-3" value="Crear">
-                    <a href="{% url 'trueque:escanear' %}" class="btn btn-existente p-3">Escanear</a>
-                    <a href="{% url 'trueque:trueques' %}" class="btn btn-existente p-3">Regresar</a>
+                    <input type="submit" class="btn btn-agregar p-3" value="Actualizar">
+                    <a href="{% url 'usuarios:usuarios' %}" class="btn btn-existente p-3">Regresar</a>
                 </div>
             </form>
             <!-- Fin formulario de contacto -->

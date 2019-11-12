@@ -16,11 +16,6 @@ class Trueque(models.Model):
         verbose_name_plural = "trueque"
         ordering = ['-created']
 
-    def save(self, commit=True):
-        librox = Libro.objects.filter('libro')
-        if librox.exists():
-            return
-        else:
-            Libro.save()
-        return super(SongForm, self).save(commit=commit)
+    def __str__(self):
+       return str(self.id)
 

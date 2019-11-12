@@ -18,3 +18,7 @@ class CrearPost(CreateView):
     form_class = PostForm
     template_name = "posts/post_form.html"
     success_url = reverse_lazy('posts:posts')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super(CrearPost, self).form_valid(form)

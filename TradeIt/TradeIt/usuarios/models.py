@@ -8,6 +8,9 @@ class Usuario(models.Model):
     tipo = models.CharField(max_length=80, verbose_name="Tipo", blank=False)
     id = models.BigIntegerField(primary_key=True, verbose_name="Identificador", blank=False)
     saldo = models.SmallIntegerField(verbose_name="Saldo", default=0)
+    eafit = models.BooleanField(verbose_name="Miembro EAFIT", default=False)
+    fecha_nacimiento = models.DateField(verbose_name="Fecha de Nacimiento", blank=False)
+    tyc = models.BooleanField(verbose_name="Terminos y Condiciones", default=False)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creacion")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edicion")
 

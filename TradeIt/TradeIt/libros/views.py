@@ -12,6 +12,7 @@ from django.utils.decorators import method_decorator
 @method_decorator(staff_member_required, name='dispatch')
 class ListLibro(ListView):
     model = Libro
+    paginate_by = 10
     def get_queryset(self): # new
         object_list = Libro.objects.all()
         query = self.request.GET.get('buscar')
@@ -37,6 +38,7 @@ class CrearLibro(CreateView):
 class UpdateLibro(UpdateView):
     model = Libro
     form_class = LibroForm
+    template_name = 'libros/libro_form_update.html'
     success_url = reverse_lazy('libros:libros')
 
 @method_decorator(staff_member_required, name='dispatch')

@@ -1,0 +1,117 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Trueques{% endblock %}
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<section class="page-section about-heading">
+  <div class="container-fluid">
+    <div class="about-heading-content">
+      <div class="row">
+        <div class="col-xl-6 col-lg-8 col-md-12 mx-auto">
+          <div class="bg-faded rounded p-5">
+            <h2 class="section-heading mb-4">
+              <span class="section-heading-upper text-center ">Generar Estadistica</span>
+            </h2>
+            <div class="row">
+              <div class="col-4">
+                <form action="{% url 'trueque:estadisticas' %}" method="get" class="">
+                  <p>Introduzca la estadistica deseada:</p>
+                  <div class="form-group">
+                    <select name="tipo" class="form-control" id="tipo">
+                      <option value="contareditoriales">Editoriales Participantes</option>
+                      <option value="librosxeditorial">Libros por Editorial</option>
+                      <option value="cantidadtrueques">Cantidad Trueques</option>
+                      <option value="truequesxliterario">Trueques Genero Literario</option>
+                    </select>
+                  </div>
+                  <div class="form-group" id="grupo1">
+                    <label>Fecha Inicial <input type="date" name="fechainicial" id="grupo1fechai" class="form-control mt-2"></label>
+                    <label>Fecha Final <input type="date" name="fechafinal" id="grupo1fechaf" class="form-control mt-2"></label>
+                  </div>
+                  <div class="form-group" id="grupo2">
+                    <label>Editorial <input type="text" name="editorial" id="grupo2editorial" class="form-control mt-2"></label>
+                  </div>
+                  <br>
+                  <input type="submit" name="" value="Generar" class="btn btn-primary mt-2">
+                </form>
+              </div>        
+              <div class="col-8">
+                <!--<div class="table-responsive">
+                  <table class="table table-hover table-bordered table-striped">
+                    <tr>
+                      <th>ID</th>
+                      <th>Usuario</th>
+                      <th>Libro</th>
+                      <th>Direccionalidad</th>
+                      <th>Link</th>
+                    </tr>
+                    {% for trueque in object_list %}
+                    <tr>
+                      <td>{{trueque.created}}</td>
+                      <td>{{trueque.usuario}}</td>
+                      <td>{{trueque.libro}}</td>
+                      <td>{{trueque.direccionalidad}}</td>  
+                      <td><a href="{% url 'trueque:trueques' %}"> Ver mas</a></td>
+                    </tr>
+                    {% endfor %}
+                  </table>-->
+                  <h4>{{mensaje}}{{object_list}}<h4>
+                </div>
+                <script>
+                  $("#tipo").change(function() {
+                    if ($(this).val() == "contareditoriales") {
+                      $('#grupo1').show();
+                      $('#grupo1fechai').attr('required', '');
+                      $('#grupo1fechai').attr('data-error', 'This field is required.');
+                      $('#grupo1fechaf').attr('required', '');
+                      $('#grupo1fechaf').attr('data-error', 'This field is required.');
+                      $('#grupo2').hide();
+                      $('#grupo2editorial').removeAttr('required', '');
+                      $('#grupo2editorial').removeAttr('data-error', 'This field is required.');
+                    } else if($(this).val() == "librosxeditorial"){
+
+                      $('#grupo1').hide();
+                      $('#grupo1fechai').removeAttr('required', '');
+                      $('#grupo1fechai').removeAttr('data-error', 'This field is required.');
+                      $('#grupo1fechaf').removeAttr('required', '');
+                      $('#grupo1fechaf').removeAttr('data-error', 'This field is required.');
+                      $('#grupo2').show();
+                      $('#grupo2editorial').attr('required', '');
+                      $('#grupo2editorial').attr('data-error', 'This field is required.');
+                    } else if($(this).val() == "cantidadtrueques"){
+
+                      $('#grupo1').show();
+                      $('#grupo1fechai').attr('required', '');
+                      $('#grupo1fechai').attr('data-error', 'This field is required.');
+                      $('#grupo1fechaf').attr('required', '');
+                      $('#grupo1fechaf').attr('data-error', 'This field is required.');
+                      $('#grupo2').hide();
+                      $('#grupo2editorial').removeAttr('required', '');
+                      $('#grupo2editorial').removeAttr('data-error', 'This field is required.');
+                    } else if($(this).val() == "truequesxliterario"){
+
+                      $('#grupo1').show();
+                      $('#grupo1fechai').attr('required', '');
+                      $('#grupo1fechai').attr('data-error', 'This field is required.');
+                      $('#grupo1fechaf').attr('required', '');
+                      $('#grupo1fechaf').attr('data-error', 'This field is required.');
+                      $('#grupo2').hide();
+                      $('#grupo2editorial').removeAttr('required', '');
+                      $('#grupo2editorial').removeAttr('data-error', 'This field is required.');
+                    }
+                  });
+                  $("#tipo").trigger("change");
+                </script>
+              </div>
+            </div>
+          </div>         
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+
