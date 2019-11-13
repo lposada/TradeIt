@@ -15,6 +15,8 @@ from usuarios.models import Usuario
 from django.views.generic import View
 from django.utils import timezone
 from .render import Render
+from django.db import InternalError
+from django.contrib.messages.views import SuccessMessageMixin
 
 # Create your views here.
 @method_decorator(staff_member_required, name='dispatch')
@@ -28,6 +30,13 @@ class CrearTrueque(CreateView):
     form_class = TruequesForm
     success_url = reverse_lazy('trueque:trueques')
     
+    def form_valid(self, form):
+        try:
+            return super(CrearTrueque, self).form_valid(form)
+        except InternalError as e:
+            mensaje = format(e).split("CONTEXT")[0]
+            return render(self.request, 'trueque/trueque_form.html', {'form': TruequesForm, 'messages': str(mensaje)})
+
     def form_invalid(self, form):
         if self.request.method == "POST":
             try:

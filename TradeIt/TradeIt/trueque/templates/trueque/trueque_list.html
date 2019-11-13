@@ -17,6 +17,7 @@
               <table class="table table-hover table-bordered table-striped">
                 <tr>
                   <th>Fecha</th>
+                  <th>ID</th>
                   <th>Usuario</th>
                   <th>Libro</th>
                   <th>Direccionalidad</th>
@@ -25,6 +26,7 @@
                 {% for trueque in object_list %}
                 <tr>
                   <td>{{trueque.created}}</td>
+                  <td>{{trueque.id}}</td>
                   <td>{{trueque.usuario}}</td>
                   <td>{{trueque.libro}}</td>
                   <td>{{trueque.direccionalidad}}</td>  

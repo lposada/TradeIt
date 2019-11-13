@@ -28,6 +28,13 @@ class DetailLibro(DetailView):
     model = Libro
 
 @method_decorator(staff_member_required, name='dispatch')
+class DetailLibroQR(DetailView):
+    model = Libro
+
+    def get_object(self):
+        return Libro.objects.get(pk=self.request.GET.get('id_libro'))
+
+@method_decorator(staff_member_required, name='dispatch')
 class CrearLibro(CreateView):
     model = Libro
     form_class = LibroForm
@@ -45,4 +52,10 @@ class UpdateLibro(UpdateView):
 class DeleteLibro(DeleteView):
     model = Libro
     success_url = reverse_lazy('libros:libros')
+
+
+def EscanearQR(request):
+    model = Libro
+    form_class = LibroForm
+    return render(request, "libros/escanear_qr.html")
 
