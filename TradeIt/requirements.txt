@@ -1,4 +1,4 @@
 django==2.2.6
 django-ckeditor==5.4.0
-pyscopg2==2.83
+pyscopg2
 xhtml2pdf
